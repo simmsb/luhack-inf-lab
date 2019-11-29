@@ -5,7 +5,7 @@ services:
     build: './bof'
     ports:
       - "1234:1234"
-      - "5000-6000:5000-6000"
+      - "5000:50000"
     environment:
       - FLAG_0=${BOF_FLAG_0}
     networks:
