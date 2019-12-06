@@ -13,13 +13,17 @@ RUN musl-gcc -static -no-pie -z execstack -fno-stack-protector -O0 vulnerable.c 
 FROM clux/muslrust:latest AS build-rust
 
 WORKDIR /opt/server/
-COPY server/Cargo.toml server/Cargo.lock ./
 
-COPY server/src ./src
+COPY server/Cargo.toml .
+COPY server/Cargo.lock .
+RUN mkdir .cargo
+RUN cargo vendor > .cargo/config
+
+COPY server/src src
 COPY --from=build-vulnerable /opt/vulnerable/vulnerable_program src/vulnerable_program
 
 RUN cargo build --release
-RUN cargo install --path .
+RUN cargo install --path . --verbose
 
 FROM alpine:latest
 

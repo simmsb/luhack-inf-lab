@@ -3,12 +3,16 @@
 FROM clux/muslrust:latest AS build-rust
 
 WORKDIR /opt/server/
-COPY server/Cargo.toml server/Cargo.lock ./
 
-COPY server/src ./src
+COPY server/Cargo.toml .
+COPY server/Cargo.lock .
+RUN mkdir .cargo
+RUN cargo vendor > .cargo/config
+
+COPY server/src src
 
 RUN cargo build --release
-RUN cargo install --path .
+RUN cargo install --path . --verbose
 
 FROM alpine:latest
 
