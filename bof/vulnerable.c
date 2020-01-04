@@ -6,9 +6,9 @@
 #include <time.h>
 #include <unistd.h>
 
+static int port = 5000;
+
 void target() {
-  srand(time(NULL));
-  int port = (rand() % 5000) + 1000;
   if (fork() == 0) {
     int host_sock = socket(AF_INET, SOCK_STREAM, 0);
 

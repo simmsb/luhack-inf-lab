@@ -16,18 +16,18 @@ RUN cargo install --path . --verbose
 
 FROM alpine:latest
 
-ARG flag_0
-ARG flag_1
-ARG root_pw
+ARG FLAG_0
+ARG FLAG_1
+ARG ROOT_PW
 
 RUN apk add util-linux python3 openssh-keygen
 
 COPY --from=build-rust /root/.cargo/bin/server /usr/local/bin/server
 
 RUN adduser -g "" smooth -D -s /bin/sh
-RUN passwd root -d $root_pw && ssh-keygen -f /home/smooth/root -N $root_pw
+RUN passwd root -d $ROOT_PW && ssh-keygen -f /home/smooth/root -N $root_pw
 
-RUN su - smooth -c "echo $flag_0 > /home/smooth/flag.txt"
-RUN echo $flag_1 > /root/flag.txt
+RUN su - smooth -c "echo $FLAG_0 > /home/smooth/flag.txt"
+RUN echo $FLAG_1 > /root/flag.txt
 
-CMD su - smooth -c "server"
+CMD ["su", "-", "smooth", "-c", "server"]

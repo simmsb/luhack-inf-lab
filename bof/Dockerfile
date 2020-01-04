@@ -27,9 +27,14 @@ RUN cargo install --path . --verbose
 
 FROM alpine:latest
 
+ARG FLAG
+
 RUN apk add util-linux
 
 COPY --from=build-vulnerable /opt/vulnerable/vulnerable_program /usr/local/bin/vulnerable_program
 COPY --from=build-rust /root/.cargo/bin/server /usr/local/bin/server
 
-CMD server
+RUN adduser -g "" smooth -D -s /bin/sh
+RUN su - smooth -c "echo $FLAG > /home/smooth/flag.txt"
+
+CMD ["su", "-", "smooth", "-c", "server"]

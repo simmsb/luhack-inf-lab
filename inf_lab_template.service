@@ -1,0 +1,10 @@
+[Unit]
+Description=Luhack Inf Lab %i
+After=network.target
+
+[Service]
+ExecStart=/home/user/luhack_inf_lab/run.sh bof "5000 1234"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
