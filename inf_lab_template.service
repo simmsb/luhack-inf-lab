@@ -1,6 +1,7 @@
 [Unit]
 Description=Luhack Inf Lab %i
-After=network.target
+After=docker.service
+Requires=docker.service
 
 [Service]
 ExecStart=/home/user/luhack_inf_lab/run.sh bof "5000 1234"
