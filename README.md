@@ -32,7 +32,7 @@ docker run --rm \
 
 1. Start it up:
 ```
-docker run --rm -it -p 5000 -p 1234 nitros12/luhack-inf-lab-bof
+docker run --rm -it -p 5000:5000 -p 1234:1234 nitros12/luhack-inf-lab-bof
 ```
 
 2. Poke `localhost:1234`
@@ -42,7 +42,7 @@ docker run --rm -it -p 5000 -p 1234 nitros12/luhack-inf-lab-bof
 
 1. Start it up:
 ```
-docker run --rm -it -p 4321 nitros12/luhack-inf-lab-vuln-py
+docker run --rm -it -p 4321:4321 nitros12/luhack-inf-lab-vuln-py
 ```
 
 2. Poke `localhost:4321`
