@@ -25,7 +25,7 @@ RUN apk add util-linux python3 openssh-keygen
 COPY --from=build-rust /root/.cargo/bin/server /usr/local/bin/server
 
 RUN adduser -g "" smooth -D -s /bin/sh
-RUN passwd root -d $ROOT_PW && ssh-keygen -f /home/smooth/root -N $root_pw
+RUN passwd root -d $ROOT_PW && ssh-keygen -f /home/smooth/root -N $ROOT_PW
 
 RUN su - smooth -c "echo $FLAG_0 > /home/smooth/flag.txt"
 RUN echo $FLAG_1 > /root/flag.txt

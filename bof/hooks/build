@@ -1,0 +1,2 @@
+docker build --build-arg FLAG=$FLAG -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+

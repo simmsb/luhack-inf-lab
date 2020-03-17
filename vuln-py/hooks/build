@@ -1,0 +1,2 @@
+docker build --build-arg FLAG_0=$FLAG_0 --build-arg FLAG_1=$FLAG_1 --build-arg ROOT_PW=$ROOT_PW -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+
