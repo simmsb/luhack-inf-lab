@@ -19,15 +19,13 @@ FROM alpine:latest
 ARG FLAG_0
 ARG FLAG_1
 ARG ROOT_PW
+ENV FLAG_0=$FLAG_0
+ENV FLAG_1=$FLAG_1
+ENV ROOT_PW=ROOT_PW
 
 RUN apk add util-linux python3 openssh-keygen
 
 COPY --from=build-rust /root/.cargo/bin/server /usr/local/bin/server
+COPY startup.sh /tmp/startup.sh
 
-RUN adduser -g "" smooth -D -s /bin/sh
-RUN passwd root -d $ROOT_PW && ssh-keygen -f /home/smooth/root -N $ROOT_PW
-
-RUN su - smooth -c "echo $FLAG_0 > /home/smooth/flag.txt"
-RUN echo $FLAG_1 > /root/flag.txt
-
-CMD ["su", "-", "smooth", "-c", "server"]
+CMD /tmp/startup.sh
