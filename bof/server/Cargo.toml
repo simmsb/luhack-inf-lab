@@ -12,7 +12,7 @@ path = "src/main.rs"
 
 [dependencies]
 tokio = { version = "0.2.0-alpha.6", features = ["process", "io"] }
-indoc = "0.3.6"
+indoc = "1.0.7"
 lazy_static = "1.4.0"
 log = "0.4.8"
 simple_logger = "1.6.0"
